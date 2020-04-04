@@ -2,18 +2,26 @@
 
 include("db.php");
 
-if (isset($_POST['save_task'])){
+if  (isset($_POST['save_task'])){
       $title = $_POST['title'];
       $description = $_POST['description'];
 
-      $query = "INSERT INTO task (title,description) VALUES ('$title','$description')";
-      $result = mysqli_query($conn, $query);
-      if (!$result){
-        die("Query Failed");
+      if ($title!=null && $description!=null ){
+
+        $query = "INSERT INTO task (title,description) VALUES ('$title','$description')";
+        $result = mysqli_query($conn, $query);
+        if (!$result){
+          die("Query Failed");
+
+        }
+        $_SESSION['message'] = 'Task Saved Succesfully';
+        $_SESSION['message_type'] = 'success';
+      }else{
+        $_SESSION['message'] = 'Campos vacios';
+        $_SESSION['message_type'] = 'danger';
       }
 
-      $_SESSION['message'] = 'Task Saved Succesfully';
-      $_SESSION['message_type'] = 'success';
+      
 
       header("location: index.php");
 }

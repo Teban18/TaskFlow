@@ -50,4 +50,3 @@ if(isset($_POST['Update'])){
   </div>
 </div>
 
-<?php include("Includes/footer.php"); ?>
